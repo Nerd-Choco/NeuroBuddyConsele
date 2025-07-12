@@ -4,27 +4,16 @@ public class Userdatabase
 {
     public string Username { get; set; }
 
-    public List<NeuroCategory> Categories { get; } = new List<NeuroCategory>();
-    public List<NeuroTask> Tasks { get; } = new List<NeuroTask>();
-    public List<NeuroActivity> Activities { get; }= new List<NeuroActivity>();
-    public List<NeuroSchedule> Schedules { get; } = new List<NeuroSchedule>();                 
+    public List<NeuroCategory> Categories { get; set; } = new List<NeuroCategory>();
+    public List<NeuroTask> Tasks { get; set; } = new List<NeuroTask>();
 
-    public Userdatabase(string username, IEnumerable<NeuroCategory>? categories = null, IEnumerable<NeuroTask>? tasks = null, IEnumerable<NeuroSchedule>? schedules = null, IEnumerable<NeuroActivity>? activities = null)
+    public NeuroCategory? GetCategoryById(Guid id)
     {
-        Username = username;
+        return Categories.FirstOrDefault(x => x.ID == id, null);
+    }
 
-      
-        if (categories != null)
-            Categories.AddRange(categories);
-
-        if (tasks != null)
-            Tasks.AddRange(tasks);
-
-        if (schedules != null)
-            Schedules.AddRange(schedules);
-
-        if(activities !=null)
-    
-            Activities.AddRange(activities);
+    public NeuroTask? GetTaskById(Guid id)
+    {
+        return Tasks.FirstOrDefault(x => x.ID == id, null);
     }
 }

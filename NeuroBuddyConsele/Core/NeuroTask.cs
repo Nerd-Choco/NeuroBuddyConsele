@@ -3,41 +3,21 @@ namespace NeuroBuddy.Core;
 public class NeuroTask
 {
     public string Name {get; set;}
+    public Guid CategoryId { get; set; }
 
-    NeuroCategory category;
-    public NeuroCategory Category
-    {
-        get
-        {
-            return category;
-        }
-        set
-        {
+    public Guid ID { get; set; } = Guid.NewGuid();
 
-            if (value == null)
-                throw new Exception("Cannot have a task without a category");
-
-            if (category != null)
-            {
-                category.RemoveTask(this);
-            }
-
-            category = value;
-        }
-    }
-
-
-
-    public NeuroTask(string name, NeuroCategory category)
+    public NeuroTask(string name,NeuroCategory category)
     {
         Name = name;
-
-        this.category = category;
-        if (category!= null)
-        category.AddTask(this);
-
-       
-
+        CategoryId = category.ID;
+        
     }
-
+    public NeuroTask(string name, Guid categoryId, Guid iD)
+    {
+        Name = name;
+        CategoryId = categoryId;
+        ID = iD;
+    }
+    public NeuroTask() { }
 }
