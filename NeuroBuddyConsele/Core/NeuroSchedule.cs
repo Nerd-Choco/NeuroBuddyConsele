@@ -65,6 +65,7 @@ namespace NeuroBuddyConsele.Core
         {
             return $"Duration: {Duration}";
         }
+        
 
     }
 }

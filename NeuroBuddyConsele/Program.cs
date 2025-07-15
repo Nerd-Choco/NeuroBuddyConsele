@@ -16,8 +16,6 @@ namespace NeuroBuddyConsele
             activity.Schedule.PlannedStartTime = DateTime.Now; 
             activity.Schedule.PlannedDuration = TimeSpan.FromMinutes(30);
 
-            activity.Start();
-            activity.Pause();
             db.Activities.Add(activity);
             activity = new("Food", category);
             db.Activities.Add(activity);
@@ -47,10 +45,13 @@ namespace NeuroBuddyConsele
             Console.WriteLine(cat);
             while (true)
             {
-                Console.WriteLine("===============================");
-                Console.WriteLine("command" +
-                    "\n1)start" +
-                    "\n2)Pause");
+                Console.WriteLine("____________________________________");
+                Console.WriteLine("commands\n____________________________________" +
+                    "\n1) start" +
+                    "\n2) pause" +
+                    "\n3) duration");
+                Console.WriteLine("____________________________________");
+
                 userInput = Convert.ToInt32(Console.ReadLine()); 
 
                 if(userInput ==1)
@@ -62,11 +63,18 @@ namespace NeuroBuddyConsele
                 else if(userInput==2)
                 {
                     db.Activities.First().Pause();
-                    Console.WriteLine(db.Activities.First().GetActualDuration()+" : "+ db.Activities.First().ActivityStatus);
+                    Console.WriteLine(db.Activities.First().ActivityStatus);
                 }
-               else  break;
+                else if(userInput==3 )
+                {
+                    Console.WriteLine(db.Activities.First().GetActualDuration() + " : " + db.Activities.First().ActivityStatus);
+                }
+                else break;
             }
-                Console.WriteLine(db.Activities.First().ProgressTracker.ToString());
+            Console.WriteLine("____________________________________");
+            Console.WriteLine(db.Activities.First()); 
+
+
         }
 
     }

@@ -1,4 +1,5 @@
 using NeuroBuddyConsele.Core;
+using System.Diagnostics;
 
 namespace NeuroBuddy.Core;
 
@@ -37,11 +38,16 @@ public class NeuroActivity
     public void Start()
     {
         startTime = DateTime.Now;
-        this.ActivityStatus = Status.Started;
+        if (ActivityStatus == Status.NotStarted)
+        {
+            ActivityStatus = Status.Started;
+            return;
+        }
+        ActivityStatus = Status.InProcess;
     }
     public void Pause()
     {
-        if (ActivityStatus == Status.NotStarted)
+        if (ActivityStatus == Status.NotStarted|| ActivityStatus==Status.Paused)
             return; 
 
         var Interval = new ProgressInterval();
@@ -52,9 +58,24 @@ public class NeuroActivity
 
         this.ActivityStatus = Status.Paused;
     }
+    public void End()
+    {
+        if (ActivityStatus == Status.Started|| ActivityStatus== Status.InProcess)
+        {
+            Pause();
+            ActivityStatus = Status.Compeleted; 
+        }
+    }
     public TimeSpan GetActualDuration()
     {
-        return ProgressTracker.Aggregate(TimeSpan.Zero, (total, x) => total + x.Duration);
+        var total = ProgressTracker.Aggregate(TimeSpan.Zero, (sum, interval) => sum + interval.Duration);
+
+        if (ActivityStatus == Status.Started || ActivityStatus == Status.InProcess)
+        {
+            total += (DateTime.Now - startTime);
+        }
+
+        return total;
     }
     public override string ToString()
     {
@@ -62,6 +83,7 @@ public class NeuroActivity
             $"\nCategory: {Category}"+
             $"\nStatus: {ActivityStatus}" +
             $"\nSchedule: {Schedule}" +
-            $"\nProgress : {ProgressTracker}";
+            $"\nProgress:\n{string.Join("\n",ProgressTracker)}" +
+            $"\nTotal Duration: {GetActualDuration()}";
     }
 } 
