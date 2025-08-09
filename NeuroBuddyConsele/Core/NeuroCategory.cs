@@ -6,7 +6,13 @@ public class NeuroCategory
 {
 
     public Guid ID { get; set; } = Guid.NewGuid();
+    
     public string Name { get; set; }
+
+    public NeuroCategory()
+    {
+        
+    }
 
     public NeuroCategory(string name)
     {
@@ -15,7 +21,6 @@ public class NeuroCategory
 
     public override string ToString()
     { 
-
-        return $"Name: {Name}, ID: {ID}";
+        return $"Title: {Name}, ID: {ID}";
     }
 }

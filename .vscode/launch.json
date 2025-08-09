@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "vslsRemoteLaunch",
+            "name": "NeuroBuddyConsele",
+            "request": "attach",
+            "projectID": "9e290e83-fed7-44ef-89fc-eff31c7a08af"
+        }
+    ]
+}

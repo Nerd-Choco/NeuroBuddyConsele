@@ -1,5 +1,6 @@
 using NeuroBuddyConsele.Core;
 using System.Diagnostics;
+using System.Text.Json.Serialization;
 
 namespace NeuroBuddy.Core;
 
@@ -11,28 +12,38 @@ public enum Status
     InProcess,
     Compeleted
 }
+
 public class NeuroActivity
 {
     private DateTime startTime;
 
-    public string Name { get; set; }
+    public string Title { get; set; }
+
     public Guid ID { get;} = Guid.NewGuid();
-    public NeuroCategory Category {get;set;}
+
+    public Guid CategoryId {get; set;}
+
     public NeuroSchedule? Schedule { get; set; } = new NeuroSchedule();
-    public List<ProgressInterval> ProgressTracker { get; init; } = new List<ProgressInterval>();
+
+    public List<ProgressInterval> ProgressIntervals { get; init; } = new List<ProgressInterval>();
+
+    [JsonIgnore]
     public Status ActivityStatus { get; set; } = Status.NotStarted;
+
 
     public NeuroActivity(string name, NeuroCategory category, NeuroSchedule? schedule)
     {
-        Name = name;
-        Category = category;
+        Title = name;
+        CategoryId = category.ID;
         Schedule = schedule;
     }
+
     public NeuroActivity(string name,NeuroCategory category)
     {
-        Name = name;
-        Category = category;
+        Title = name;
+        CategoryId = category.ID;
     }
+
     public NeuroActivity() { }
 
     public void Start()
@@ -45,6 +56,7 @@ public class NeuroActivity
         }
         ActivityStatus = Status.InProcess;
     }
+
     public void Pause()
     {
         if (ActivityStatus == Status.NotStarted|| ActivityStatus==Status.Paused)
@@ -54,10 +66,11 @@ public class NeuroActivity
         Interval.EndTime = DateTime.Now;
         Interval.StartTime = startTime;
 
-        ProgressTracker.Add(Interval);
+        ProgressIntervals.Add(Interval);
 
         this.ActivityStatus = Status.Paused;
     }
+
     public void End()
     {
         if (ActivityStatus == Status.Started|| ActivityStatus== Status.InProcess)
@@ -66,9 +79,10 @@ public class NeuroActivity
             ActivityStatus = Status.Compeleted; 
         }
     }
+
     public TimeSpan GetActualDuration()
     {
-        var total = ProgressTracker.Aggregate(TimeSpan.Zero, (sum, interval) => sum + interval.Duration);
+        var total = ProgressIntervals.Aggregate(TimeSpan.Zero, (sum, interval) => sum + interval.Duration);
 
         if (ActivityStatus == Status.Started || ActivityStatus == Status.InProcess)
         {
@@ -77,13 +91,14 @@ public class NeuroActivity
 
         return total;
     }
+    
     public override string ToString()
     {
-        return $"Activity: {Name} " +
-            $"\nCategory: {Category}"+
+        return $"Activity: {Title} " +
+            $"\nCategory: {CategoryId}"+
             $"\nStatus: {ActivityStatus}" +
             $"\nSchedule: {Schedule}" +
-            $"\nProgress:\n{string.Join("\n",ProgressTracker)}" +
+            $"\nProgress:\n{string.Join("\n",ProgressIntervals)}" +
             $"\nTotal Duration: {GetActualDuration()}";
     }
 } 
