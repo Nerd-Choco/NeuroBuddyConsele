@@ -4,6 +4,29 @@ namespace NeuroBuddy.Core;
 
 public class JsonProvider : IUserdatabaseProvider
 {
+    List<string> RegisteredUsers = new List<string>();
+    string filePath = "UserList.json";
+    public bool IsRegistered(string username)
+    {
+        LoadUsers();
+        if (RegisteredUsers.Contains(username))
+            return true;
+        return false; 
+    }
+   public void LoadUsers()
+    {
+        if (File.Exists(filePath))
+        {
+            var json = File.ReadAllText(filePath);
+            RegisteredUsers = JsonSerializer.Deserialize<List<string>>(json) ?? new List<string>();
+        }
+    }
+   public void SaveUsers(string username)
+    {
+        RegisteredUsers.Add(username);
+        var json = JsonSerializer.Serialize(RegisteredUsers);
+        File.WriteAllText(filePath, json);
+    }
     string GetFilePath(string username)
     {
          return username + ".json";
@@ -32,6 +55,7 @@ public class JsonProvider : IUserdatabaseProvider
 
         var serialized = JsonSerializer.Serialize(jdb);
         File.WriteAllText(filePath, serialized);
+        SaveUsers(db.Username);
     }
 
     public IUserdatabase CreateEmpty(string username)

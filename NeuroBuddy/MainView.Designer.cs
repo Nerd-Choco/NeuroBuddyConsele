@@ -32,6 +32,7 @@
             Username_Label = new Label();
             panel2 = new Panel();
             treeView1 = new TreeView();
+            listView1 = new ListView();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             SuspendLayout();
@@ -53,9 +54,11 @@
             Username_Label.Size = new Size(50, 20);
             Username_Label.TabIndex = 0;
             Username_Label.Text = "label1";
+            Username_Label.Click += Username_Label_Click;
             // 
             // panel2
             // 
+            panel2.Controls.Add(listView1);
             panel2.Controls.Add(treeView1);
             panel2.Location = new Point(12, 66);
             panel2.Name = "panel2";
@@ -65,11 +68,19 @@
             // treeView1
             // 
             treeView1.BackColor = Color.FromArgb(180, 159, 173);
-            treeView1.Location = new Point(3, 3);
+            treeView1.Location = new Point(-13, 3);
             treeView1.Name = "treeView1";
-            treeView1.Size = new Size(344, 438);
+            treeView1.Size = new Size(425, 438);
             treeView1.TabIndex = 0;
             treeView1.AfterSelect += treeView1_AfterSelect;
+            // 
+            // listView1
+            // 
+            listView1.Location = new Point(418, 0);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(320, 355);
+            listView1.TabIndex = 1;
+            listView1.UseCompatibleStateImageBehavior = false;
             // 
             // MainView
             // 
@@ -93,5 +104,6 @@
         private Label Username_Label;
         private Panel panel2;
         private TreeView treeView1;
+        private ListView listView1;
     }
 }

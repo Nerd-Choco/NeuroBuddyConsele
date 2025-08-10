@@ -20,6 +20,8 @@ namespace NeuroBuddy
             InitializeComponent();
             Username_Label.Text = username;
             UpdateCategoryList();
+
+
         }
         TreeNode MakeCategoryNode(NeuroCategory category)
         {
@@ -31,22 +33,27 @@ namespace NeuroBuddy
                 categoryNode.Nodes.Add(new TreeNode(activity.Title));
 
             }
-                return categoryNode;
+            return categoryNode;
         }
-            void UpdateCategoryList()
+        void UpdateCategoryList()
+        {
+            treeView1.Nodes.Clear();
+
+
+            var rootCategories = userData.GetAllCategories();
+
+            foreach (var rootCat in rootCategories)
             {
-                treeView1.Nodes.Clear();
-
-
-                var rootCategories = userData.GetAllCategories();
-
-                foreach (var rootCat in rootCategories)
-                {
-                    treeView1.Nodes.Add(MakeCategoryNode(rootCat));
-                }
+                treeView1.Nodes.Add(MakeCategoryNode(rootCat));
             }
+        }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void Username_Label_Click(object sender, EventArgs e)
         {
 
         }

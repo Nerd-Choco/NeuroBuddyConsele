@@ -26,7 +26,9 @@ public interface IUserdatabaseProvider
     IUserdatabase Load(string username);
 
     void Save(IUserdatabase db);
-
+    bool IsRegistered(string username);
+    void LoadUsers();
+    void SaveUsers(string username);
     IUserdatabase CreateEmpty(string username);
 
     IUserdatabase CreateClone(IUserdatabase db, string newUsername);

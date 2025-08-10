@@ -16,6 +16,12 @@ namespace NeuroBuddy
         private void Registered_button_Click(object sender, EventArgs e)
         {
             db.Username = username_box.Text;
+
+            if (!dbprovider.IsRegistered(db.Username))
+            {
+                MessageBox.Show("User is not registered");
+                return;
+            } 
             var main = new MainView(dbprovider, db.Username);
             main.Show();
         }
@@ -23,7 +29,8 @@ namespace NeuroBuddy
         private void register_button_Click(object sender, EventArgs e)
         {
             db.Username = username_box.Text;
-            dbprovider.CreateEmpty(db.Username);
+            dbprovider.SaveUsers(db.Username);
+
             var Main = new MainView(dbprovider, db.Username);
             Main.Show();
         }
