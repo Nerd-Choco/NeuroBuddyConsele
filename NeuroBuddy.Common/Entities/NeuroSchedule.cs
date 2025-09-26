@@ -1,32 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using NeuroBuddy.Common.Entities;
+using NeuroBuddy.Common.Enums;
 
-namespace NeuroBuddyConsele.Core
+namespace NeuroBuddy.Common
 {
- 
-    public enum PeriodOfDay
-    {
-        Morning,
-        Noon,
-        Afternoon,
-        Evening,
-        Night,
-        LateNight
-    }
-
-    public enum Repetitive
-    {
-        Daily,
-        Weekly,
-        Monthly,
-        Yearly,
-        Onetime
-    }
-
     public class NeuroSchedule
     {
         PeriodOfDay period;
@@ -56,5 +34,4 @@ namespace NeuroBuddyConsele.Core
                 $"\nTime Line: {period}";
         }
     }
-
 }

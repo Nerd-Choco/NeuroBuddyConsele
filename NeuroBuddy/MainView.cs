@@ -1,4 +1,6 @@
-﻿using NeuroBuddy.Core;
+﻿
+using NeuroBuddy.Common.Entities;
+using NeuroBuddy.Common.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,49 +15,20 @@ namespace NeuroBuddy
 {
     public partial class MainView : Form
     {
-        IUserdatabase userData;
-        public MainView(IUserdatabaseProvider provider, string username)
+
+  //      Button currenBtn;
+        NeuroActivity activity;
+        public MainView()
         {
-            userData = provider.Load(username);
+
             InitializeComponent();
-            Username_Label.Text = username;
-            UpdateCategoryList();
-
-
-        }
-        TreeNode MakeCategoryNode(NeuroCategory category)
-        {
-            var categoryNode = new TreeNode(category.Name);
-
-            var activities = userData.GetAllActivitesOfCateogry(category.ID);
-            foreach (var activity in activities)
-            {
-                categoryNode.Nodes.Add(new TreeNode(activity.Title));
-
-            }
-            return categoryNode;
-        }
-        void UpdateCategoryList()
-        {
-            treeView1.Nodes.Clear();
-
-
-            var rootCategories = userData.GetAllCategories();
-
-            foreach (var rootCat in rootCategories)
-            {
-                treeView1.Nodes.Add(MakeCategoryNode(rootCat));
-            }
+            NeuroCategory cat = new(1, "Gym");
+            activity = new NeuroActivity("Workout", cat);
+            activity.Id = 0;
+            activity.Schedule.PlannedDuration = TimeSpan.FromMinutes(5);
         }
 
-        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-
-        }
-
-        private void Username_Label_Click(object sender, EventArgs e)
-        {
-
-        }
+        
+      
     }
 }

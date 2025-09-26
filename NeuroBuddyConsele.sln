@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddyConsele", "NeuroBuddyConsele\NeuroBuddyConsele.csproj", "{9E290E83-FED7-44EF-89FC-EFF31C7A08AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy.View", "NeuroBuddy\NeuroBuddy.View.csproj", "{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy", "NeuroBuddy\NeuroBuddy.csproj", "{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy.Common", "NeuroBuddy.Common\NeuroBuddy.Common.csproj", "{799F5D92-0E2F-0AF7-463F-3330B92BC931}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy.Services", "NeuroBuddy.Services\NeuroBuddy.Services.csproj", "{2D4FFBBF-FE72-46C1-B44C-00ECB0205429}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy.Test", "NeuroBuddy.Test\NeuroBuddy.Test.csproj", "{FC8DFBFC-97E4-4A8A-BE10-738A03DAE6E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuroBuddy.Application", "NeuroBuddy.Application\NeuroBuddy.Application.csproj", "{27CB20FC-1984-4D4B-A220-F126388F24F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9E290E83-FED7-44EF-89FC-EFF31C7A08AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E290E83-FED7-44EF-89FC-EFF31C7A08AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E290E83-FED7-44EF-89FC-EFF31C7A08AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E290E83-FED7-44EF-89FC-EFF31C7A08AF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE6ECDCD-E459-4C50-BCDA-67C375AA1541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{799F5D92-0E2F-0AF7-463F-3330B92BC931}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{799F5D92-0E2F-0AF7-463F-3330B92BC931}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{799F5D92-0E2F-0AF7-463F-3330B92BC931}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{799F5D92-0E2F-0AF7-463F-3330B92BC931}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D4FFBBF-FE72-46C1-B44C-00ECB0205429}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D4FFBBF-FE72-46C1-B44C-00ECB0205429}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D4FFBBF-FE72-46C1-B44C-00ECB0205429}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D4FFBBF-FE72-46C1-B44C-00ECB0205429}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC8DFBFC-97E4-4A8A-BE10-738A03DAE6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC8DFBFC-97E4-4A8A-BE10-738A03DAE6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC8DFBFC-97E4-4A8A-BE10-738A03DAE6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC8DFBFC-97E4-4A8A-BE10-738A03DAE6E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27CB20FC-1984-4D4B-A220-F126388F24F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27CB20FC-1984-4D4B-A220-F126388F24F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27CB20FC-1984-4D4B-A220-F126388F24F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27CB20FC-1984-4D4B-A220-F126388F24F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

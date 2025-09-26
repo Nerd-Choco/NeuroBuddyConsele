@@ -1,7 +1,5 @@
 using System.Text.Json.Serialization;
 
-namespace NeuroBuddy.Core;
-
 public class ProgressInterval
 {
     public DateTime StartTime { get; set; }
@@ -18,7 +16,7 @@ public class ProgressInterval
         StartTime = start;
         EndTime = end;
     }
-
+    
     public override string ToString()
     {
         return $"Duration: {Duration}";

@@ -1,0 +1,3 @@
+GUI  - > winForm
+Category view, Activity, calender, 
+DataBase (save,load);
